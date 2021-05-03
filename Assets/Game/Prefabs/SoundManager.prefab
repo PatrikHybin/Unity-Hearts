@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5005158736756086893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5005158736756086899}
+  - component: {fileID: 5005158736756086892}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5005158736756086899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005158736756086893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -984.2792, y: 313.0324, z: 558.9584}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5005158736756086892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005158736756086893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4a16d6d8c49b9449e7a51c28b7b2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: d6e48d98b49d3c741835bb282517b98b, type: 3}
+  - {fileID: 8300000, guid: 084c4daa25b1f5341a10586caca6806f, type: 3}
+  - {fileID: 8300000, guid: 266b8c364fca21b4f816bafbfff7ca55, type: 3}
+  - {fileID: 8300000, guid: efa83be4157bd304fad7612bb3ec9962, type: 3}
+  - {fileID: 8300000, guid: 0963417ef4ac565438b149082dfc87b1, type: 3}
+  - {fileID: 8300000, guid: b078eb5c790c6b04ea8487051e900ca0, type: 3}
+  - {fileID: 8300000, guid: 273df26eab1a8cc44b9beef7c63f01a8, type: 3}
+  - {fileID: 8300000, guid: 8ae3358504b5c774daf8d48dd16ea208, type: 3}
+  - {fileID: 8300000, guid: a76146b10ce53dd4ba490c1476b935a8, type: 3}
+  - {fileID: 8300000, guid: c13b4ad6a4c77b24d99bfcec3b8cfe58, type: 3}
+  - {fileID: 8300000, guid: de2a848bfb5d8e64585a9d65d70e3b8a, type: 3}
+  - {fileID: 8300000, guid: c96ced8b193899746bb2f8cd11232b7a, type: 3}
+  soundManager: {fileID: 0}
