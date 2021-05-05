@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 public class Player : NetworkBehaviour
 {
     [SerializeField] public GameObject parentHolder, handHolderPrefab, showHolderPrefab, enemyShowHolderPrefab, giveHolderPrefab, playAreaHolderPrefab, usedCardHolderPrefab, camera;
-    [SerializeField] private TMP_Text text, text1, text2 = null;
+    [SerializeField] private TMP_Text text, text1 = null;
     [SerializeField] private GameObject cardPrefab, fakeCardPrefab;
     [SerializeField] public GameObject scoreBoard, panel;
     [SerializeField] private GameObject playerScorePrefab, roundPrefab;
@@ -19,9 +19,9 @@ public class Player : NetworkBehaviour
 
     //handHolderPrefab, showHolderPrefab, giveHolderPrefab
     public static List<Player> players = new List<Player>();
-    public bool win { get; internal set; }
-    public int allCards { get; internal set; }
-    public int allPoints { get; internal set; }
+    public bool Win { get; internal set; }
+    public int AllCards { get; internal set; }
+    public int AllPoints { get; internal set; }
 
     [SyncVar]
     public int PlayerId = -1;
@@ -232,10 +232,10 @@ public class Player : NetworkBehaviour
             if (player.TotalScore == losingScore)
             {
                 losingPlayers.Add(player);
-                player.win = false;
+                player.Win = false;
             } else
             {
-                player.win = true;
+                player.Win = true;
             }
         }
 
@@ -244,7 +244,7 @@ public class Player : NetworkBehaviour
             if (player.hasAuthority)
             {
                 WriteMpGameResults gameScore = new WriteMpGameResults();
-                gameScore.WritePlayersScore(players, player.win, GameManagerHearts.gameManager.currentRound);
+                gameScore.WritePlayersScore(players, player.Win, GameManagerHearts.gameManager.currentRound);
                 gameScore.WritePlayerStats(player);
             }
         }

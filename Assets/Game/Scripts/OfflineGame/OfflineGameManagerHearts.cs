@@ -841,7 +841,8 @@ public class OfflineGameManagerHearts : MonoBehaviour
                 File.AppendAllText(textFolder, tmpStr + Environment.NewLine);
             }
         }
-        tmpStr = "round;" + currentRound + ";";
+        int tmpRound = currentRound - 1;
+        tmpStr = "round;" + tmpRound + ";";
         tmpStr = Encryption.EncryptDecrypt(tmpStr);
         File.AppendAllText(textFolder, tmpStr + Environment.NewLine);
         if (player.GetComponent<OfflinePlayer>().win)

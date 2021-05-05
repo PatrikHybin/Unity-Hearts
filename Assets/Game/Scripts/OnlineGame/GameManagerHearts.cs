@@ -426,7 +426,7 @@ public class GameManagerHearts : NetworkBehaviour
                             if (giveScorePlayer == player)
                             {
                                 RpcIncreasePlayerScore(giveScorePlayer, -32);
-                                player.allCards++;
+                                player.AllCards++;
                             }
                             else {
                                 RpcIncreasePlayerScore(giveScorePlayer, 32);
@@ -477,13 +477,11 @@ public class GameManagerHearts : NetworkBehaviour
                 }
             }
             if (playerScore == 32) {
-                player.allPoints++;
+                player.AllPoints++;
             }
             RpcIncreasePlayerScore(player, playerScore);
         }
     }
-
-    
 
     [ClientRpc]
     private void RpcIncreasePlayerScore(Player player, int score)

@@ -7,23 +7,28 @@ using UnityEngine.UI;
 
 public class AudioSlider : MonoBehaviour
 {
-    [SerializeField] private Slider menuSlider;
-    [SerializeField] private Slider gameSlider;
-    [SerializeField] private TMP_Text menuText;
-    [SerializeField] private TMP_Text gameText;
+    [SerializeField] private Slider menuSlider = null;
+    [SerializeField] private Slider gameSlider = null;
+    [SerializeField] private TMP_Text menuText = null;
+    [SerializeField] private TMP_Text gameText = null;
     private const string PlayerMenuVolumeKey = "PlayerMenuVolumeKey";
     private const string PlayerGameVolumeKey = "PlayerGameVolumeKey";
 
     void Start()
     {
-        menuSlider.minValue = 0;
-        menuSlider.maxValue = 1;
-        menuSlider.wholeNumbers = false;
+        if (menuSlider != null) {
+            menuSlider.minValue = 0;
+            menuSlider.maxValue = 1;
+            menuSlider.wholeNumbers = false;
+        }
         
-        gameSlider.minValue = 0;
-        gameSlider.maxValue = 1;
-        gameSlider.wholeNumbers = false;
-        
+        if (gameSlider != null)
+        {
+            gameSlider.minValue = 0;
+            gameSlider.maxValue = 1;
+            gameSlider.wholeNumbers = false;
+        }
+
         LoadPreferences();
     }
 
@@ -31,21 +36,37 @@ public class AudioSlider : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey(PlayerMenuVolumeKey))
         {
-            menuSlider.value = 0.2f;
-            gameSlider.value = 0.2f;
-            menuText.text = menuSlider.value.ToString("F1");
-            gameText.text = gameSlider.value.ToString("F1");
+            if (menuSlider != null)
+            {
+                menuSlider.value = 0.2f;
+                menuText.text = menuSlider.value.ToString("F1");
+            }
+
+            if (gameSlider != null) {
+                gameSlider.value = 0.2f;
+                gameText.text = gameSlider.value.ToString("F1");
+            }
+            
             return;
         }
 
-        menuSlider.value = float.Parse(PlayerPrefs.GetString(PlayerMenuVolumeKey));
-        gameSlider.value = float.Parse(PlayerPrefs.GetString(PlayerGameVolumeKey));
-        menuText.text = menuSlider.value.ToString("F1");
-        gameText.text = gameSlider.value.ToString("F1");
+        if (menuSlider != null)
+        {
+            menuSlider.value = float.Parse(PlayerPrefs.GetString(PlayerMenuVolumeKey));
+            menuText.text = menuSlider.value.ToString("F1");
 
-        Settings.defualtEffectVolume = float.Parse(PlayerPrefs.GetString(PlayerMenuVolumeKey));
-        Settings.menuVolume = float.Parse(PlayerPrefs.GetString(PlayerMenuVolumeKey));
-        Settings.gameVolume = float.Parse(PlayerPrefs.GetString(PlayerGameVolumeKey));
+            Settings.menuVolume = float.Parse(PlayerPrefs.GetString(PlayerMenuVolumeKey));
+        }
+
+        if (gameSlider != null)
+        {
+            gameSlider.value = float.Parse(PlayerPrefs.GetString(PlayerGameVolumeKey));
+            gameText.text = gameSlider.value.ToString("F1");
+
+            Settings.gameVolume = float.Parse(PlayerPrefs.GetString(PlayerGameVolumeKey));
+        }
+
+        Settings.defualtEffectVolume = float.Parse(PlayerPrefs.GetString(PlayerMenuVolumeKey));  
     }
 
     public void OnValueMenuChanged(float value) {

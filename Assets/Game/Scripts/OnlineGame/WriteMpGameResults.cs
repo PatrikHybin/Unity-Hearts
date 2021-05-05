@@ -83,7 +83,7 @@ internal class WriteMpGameResults
             {
                 case "wins":
                     number = Int32.Parse(lineComp[1]);
-                    if (player.win)
+                    if (player.Win)
                     {
                         number++;
                     }
@@ -91,7 +91,7 @@ internal class WriteMpGameResults
                     break;
                 case "loses":
                     number = Int32.Parse(lineComp[1]);
-                    if (!player.win)
+                    if (!player.Win)
                     {
                         number++;
                     }
@@ -99,12 +99,12 @@ internal class WriteMpGameResults
                     break;
                 case "allCards":
                     number = Int32.Parse(lineComp[1]);
-                    number += player.allCards;
+                    number += player.AllCards;
                     newLines.Add("allCards;" + number);
                     break;
                 case "allPoints":
                     number = Int32.Parse(lineComp[1]);
-                    number += player.allPoints;
+                    number += player.AllPoints;
                     newLines.Add("allPoints;" + number);
                     break;
                 case "playedGames":
