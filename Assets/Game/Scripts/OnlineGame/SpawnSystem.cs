@@ -83,6 +83,7 @@ public class SpawnSystem : NetworkBehaviour
 
         Debug.Log("Spawni karty v spawnsysteme");
         GameManagerHearts.gameManager.StartGame();
+        //GameManagerHearts.gameManager.giveCards = true;
         //Player.players[0].StartGame();
     }
 

@@ -92,6 +92,8 @@ public class Player : NetworkBehaviour
     private bool canPlayThatCard = false;
     private bool endOfGame;
 
+    [SerializeField]
+    [SyncVar]
     private bool isHost;
     public bool IsHost
     {
@@ -262,9 +264,9 @@ public class Player : NetworkBehaviour
     {
         players.Remove(this);
 
-        //ScoreBoard score = GetComponentInChildren<ScoreBoard>();
-        //score.transform.parent = null;
-        //DontDestroyOnLoad(score);
+        ScoreBoard score = GetComponentInChildren<ScoreBoard>();
+        score.transform.parent = null;
+        DontDestroyOnLoad(score);
 
         base.OnStopClient();
     }
@@ -274,6 +276,7 @@ public class Player : NetworkBehaviour
     {
         camera.gameObject.SetActive(true);
         CmdGameManagerGiveCardTime();
+        Debug.Log("Start Auth");
         try
         {
             soundManager = GameObject.Find("SoundManager(Clone)").GetComponent<SoundManager>();
@@ -1218,16 +1221,18 @@ public class Player : NetworkBehaviour
     {
         CmdStopAll();
     }
+
     [Command]
     private void CmdStopAll()
     {
         RpcStopAll();
     }
+
     [ClientRpc]
     private void RpcStopAll()
     {
-        if (!IsHost) {
-            Room.StopClient();
-        }
+        Room.StopClient();
+        
     }
+
 }

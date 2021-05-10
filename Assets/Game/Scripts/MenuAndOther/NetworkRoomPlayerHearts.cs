@@ -105,6 +105,7 @@ public class NetworkRoomPlayerHearts : NetworkBehaviour
         for (int i = 0; i < Room.RoomPlayers.Count; i++)
         {
             playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
+            Room.RoomPlayers[i].gameObject.name = Room.RoomPlayers[i].DisplayName;
             //playerReadyTexts[i].text = Room.RoomPlayers[i].IsReady ? "<color=green>Ready</color>" : "<color=red>Not Ready</color>";
             playerReadyImages[i].sprite = Room.RoomPlayers[i].IsReady ?Room.RoomPlayers[i].ready : Room.RoomPlayers[i].notReady;
             playerReadyImages[i].color = Color.white;
@@ -115,8 +116,15 @@ public class NetworkRoomPlayerHearts : NetworkBehaviour
 
     [Command]
     private void CmdSetDisplayName(string displayName) {
+        RpcSetDispalyName(displayName);
+    }
+
+    [ClientRpc]
+    private void RpcSetDispalyName(string displayName)
+    {
         DisplayName = displayName;
         gameObject.name = displayName;
+        UpdateDisplay();
     }
 
     public void Ready() {
@@ -154,12 +162,9 @@ public class NetworkRoomPlayerHearts : NetworkBehaviour
         Room.NotifyPlayersOfReadyState();
     }
 
-
     public void Leave()
     {
-        if (hasAuthority) {
-            
-        }
+        
         if (isHost)
         {
             Room.StopHost();

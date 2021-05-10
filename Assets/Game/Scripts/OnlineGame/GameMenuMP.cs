@@ -45,17 +45,24 @@ public class GameMenuMP : NetworkBehaviour
 
         if (player.IsHost)
         {
-            Debug.Log("Stop host");
             player.StopAll();
             Room.StopHost();
-            
         }
         else
         {
-            Debug.Log("Stop client");
-            Room.StopClient();
+            if (Player.players.Count - 1 < Settings.numberOfPlayersToPlay)
+            {
+                player.StopAll();
+                Room.StopServer();
+            }
+            else
+            {
+                Room.StopClient();
+            }
+            //Room.StopClient();
+
         }
     }
-
+    
 }
 

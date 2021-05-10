@@ -10,6 +10,7 @@ public class NetworkGamePlayerHearts : NetworkBehaviour
     [SyncVar]
     public string displayName = " ";
 
+    [SyncVar]
     private bool isHost;
     public bool IsHost
     {
@@ -43,5 +44,7 @@ public class NetworkGamePlayerHearts : NetworkBehaviour
     [Server]
     public void SetDisplayName(string displayName) {
         this.displayName = displayName;
+        this.gameObject.name = displayName;
     }
+
 }

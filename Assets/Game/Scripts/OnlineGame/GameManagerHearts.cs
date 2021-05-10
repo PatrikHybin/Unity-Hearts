@@ -11,7 +11,8 @@ public class GameManagerHearts : NetworkBehaviour
 {
 
     public static GameManagerHearts gameManager;
-    private static int ready = 0; 
+    public int ready = 0; 
+
     private float currentTime = 0f;
     private float giveTime = 5f;
     private float playTime = 5f;
@@ -89,7 +90,6 @@ public class GameManagerHearts : NetworkBehaviour
     [Server]
     public void StartGame()
     {
-
         if (spritesForCards.Count == 0)
         {
             RpcSetNames();
@@ -103,7 +103,7 @@ public class GameManagerHearts : NetworkBehaviour
         }
         SuffleCards();
         AssignCard();
-
+        RpcClearText();
     }
     #region ScoreBoardNames
     [ClientRpc]
@@ -145,13 +145,12 @@ public class GameManagerHearts : NetworkBehaviour
         Debug.Log("LoadCards obmedzenie na 8");
         foreach (Sprite card in cardSprites)
         {
-
             spritesForCards.Add(card);
 
-            if (spritesForCards.Count == 8)
-            {
-                break;
-            }
+            //if (spritesForCards.Count == 8)
+            //{
+            //    break;
+            //}
         }
 
     }
@@ -160,9 +159,9 @@ public class GameManagerHearts : NetworkBehaviour
     private void SpawnCards()
     {
         cards = new List<GameObject>();
-        //cardBack = spritesForCards.Find(item => item.name.Contains("background"));
+        cardBack = spritesForCards.Find(item => item.name.Contains("background"));
         spritesForCards.RemoveAll(item => item.name.Contains("background"));
-        cardBack = spritesForCards[0];
+        //cardBack = spritesForCards[0];
 
         foreach (Sprite cardSprite in spritesForCards)
         {
@@ -353,7 +352,15 @@ public class GameManagerHearts : NetworkBehaviour
         StartGame();
 
         ServerCountScore();
-        RpcGiveScore();
+        RpcGiveScore();  
+    }
+
+    [ClientRpc]
+    private void RpcClearText()
+    {
+        foreach (Player player in Player.players) {
+            player.SetText(" ");
+        }
     }
 
     #region ScoreToScoreTable

@@ -122,6 +122,10 @@ public class NetworkManagerHearts : NetworkManager
             }
         }
 
+        if (RoomPlayers.Count < Settings.numberOfPlayersToPlay) {
+            return false;
+        }
+
         return true;
     }
 
@@ -178,11 +182,14 @@ public class NetworkManagerHearts : NetworkManager
             {
                 var conn = RoomPlayers[i].connectionToClient;
                 var gamePlayerInstance = Instantiate(gamePlayerPrefab);
-                
+
+                //RpcSetDisplayName(gamePlayerInstance, RoomPlayers[i].DisplayName);
                 gamePlayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
-                gamePlayerInstance.GetComponent<NetworkGamePlayerHearts>().IsHost = RoomPlayers[i].IsHost;
+                //RpcSetHost(gamePlayerInstance, RoomPlayers[i].IsHost);
+                //gamePlayerInstance.GetComponent<NetworkGamePlayerHearts>().CmdSetHost(RoomPlayers[i].IsHost);
 
                 gamePlayerInstance.name = RoomPlayers[i].DisplayName;
+                gamePlayerInstance.IsHost = RoomPlayers[i].IsHost;
                 //destroy roomplayer
                 NetworkServer.Destroy(conn.identity.gameObject);
                 //give them authority of objects
@@ -220,7 +227,8 @@ public class NetworkManagerHearts : NetworkManager
         base.ServerChangeScene(newSceneName);
     }
 
-   
+    
+
     public override void OnServerSceneChanged(string sceneName)
     {
         Debug.Log(sceneName + "OnServerSceneChanged");
