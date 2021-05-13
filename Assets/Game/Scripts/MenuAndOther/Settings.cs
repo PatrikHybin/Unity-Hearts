@@ -15,5 +15,5 @@ public static class Settings
     public static float menuVolume;
     public static float gameVolume;
     public static float musicVolume;
-    public static int numberOfPlayersToPlay = 4;
+    public static int numberOfPlayersToPlay = 2;
 }

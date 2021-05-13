@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using UnityEngine.UI;
 
 public class Player : NetworkBehaviour
 {
@@ -103,6 +103,7 @@ public class Player : NetworkBehaviour
 
     private NetworkManagerHearts room;
     private SoundManager soundManager;
+    private Color giveCardColor;
 
     private NetworkManagerHearts Room
     {
@@ -128,6 +129,14 @@ public class Player : NetworkBehaviour
         ScoreBoardScoreHolders = new List<GameObject>();
     }
 
+    private void Start()
+    {
+        giveCardColor.a = 1; //transparency
+        giveCardColor.r = 1;
+        giveCardColor.g = 1;
+        giveCardColor.b = 1;
+    }
+
     public void Update()
     {
         try
@@ -138,8 +147,20 @@ public class Player : NetworkBehaviour
                 GameObject.Find("PlayAreaHolderMaster").GetComponent<Transform>().eulerAngles.z);
         }
         catch { }
-        
 
+        if (giveHolder != null) {
+            if (Phase == "GivePhase")
+            {
+                giveCardColor.a = 1;
+                giveHolder.GetComponent<Image>().color = giveCardColor;
+            }
+            else
+            {
+                giveCardColor.a = 0;
+                giveHolder.GetComponent<Image>().color = giveCardColor;
+            }
+        }
+        
         if (Input.GetKey(KeyCode.Tab) == true)
         {
             if (hasAuthority)

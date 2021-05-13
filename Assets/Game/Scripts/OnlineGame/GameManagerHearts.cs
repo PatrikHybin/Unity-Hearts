@@ -520,7 +520,7 @@ public class GameManagerHearts : NetworkBehaviour
                     player.PlayRandomCard();
                 }
             }
-            player.Phase = "PlayTime";
+            player.Phase = "PlayPhase";
             if (!player.myTurn)
             {
                 player.SetText(" ");

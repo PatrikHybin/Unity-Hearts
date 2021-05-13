@@ -156,7 +156,7 @@ public class PlayArea : NetworkBehaviour
         foreach (Player player in Player.players) {
             
             if (player.hasAuthority) {
-                player.SetText("highest card is " + winnerCard + " owner of that is " + winnerCard.OwnerId);
+                
                 
                 foreach (CardZone zone in Player.players[winnerCard.OwnerId].GetComponentsInChildren<CardZone>())
                 {

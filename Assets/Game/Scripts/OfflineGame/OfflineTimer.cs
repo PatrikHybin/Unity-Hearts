@@ -26,10 +26,10 @@ public class OfflineTimer : MonoBehaviour
     }
     void Start()
     {
-        giveCardColor.a = 1;
-        giveCardColor.r = 0.5f;
+        giveCardColor.a = 1; //transparency
+        giveCardColor.r = 1;
         giveCardColor.g = 1;
-        giveCardColor.b = 0.3f;
+        giveCardColor.b = 1;
     }
 
     void Update()
